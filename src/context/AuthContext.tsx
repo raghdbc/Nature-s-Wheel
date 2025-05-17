@@ -108,7 +108,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     }
   };
 
-  const register = async (name: string, email: string, password: string) => {
+  const register = async (_name: string, _email: string, _password: string) => {
     try {
       toast.error('Registration is disabled. Please use the demo account.');
       return { error: 'Registration disabled' };
