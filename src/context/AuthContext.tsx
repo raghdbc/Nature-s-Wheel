@@ -43,6 +43,13 @@ const DEMO_USER = {
   id: 'demo-user-id',
   name: 'Demo User',
 };
+const Reethu = {
+  email: 'reethujayamma29@gmail.com',
+  password: 'Reethu@1234',
+  id: 'Reethu',
+  name: 'Reethu',
+};
+
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
@@ -64,30 +71,35 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string) => {
     try {
-      // Only allow demo credentials
-      if (email === DEMO_USER.email && password === DEMO_USER.password) {
-        const demoUser = { id: DEMO_USER.id, email: DEMO_USER.email };
-        const demoProfile = {
-          id: DEMO_USER.id,
-          name: DEMO_USER.name,
+      // Check for both demo and Reethu credentials
+      if ((email === DEMO_USER.email && password === DEMO_USER.password) ||
+          (email === Reethu.email && password === Reethu.password)) {
+        
+        // Determine which user is logging in
+        const currentUser = email === DEMO_USER.email ? DEMO_USER : Reethu;
+        
+        const userObj = { id: currentUser.id, email: currentUser.email };
+        const userProfile = {
+          id: currentUser.id,
+          name: currentUser.name,
           phone: null,
           default_address: null,
           city: null,
           pincode: null,
         };
 
-        setUser(demoUser);
-        setProfile(demoProfile);
+        setUser(userObj);
+        setProfile(userProfile);
 
         // Save to localStorage
-        localStorage.setItem('user', JSON.stringify(demoUser));
-        localStorage.setItem('profile', JSON.stringify(demoProfile));
+        localStorage.setItem('user', JSON.stringify(userObj));
+        localStorage.setItem('profile', JSON.stringify(userProfile));
 
         toast.success('Welcome back!');
         return { error: null };
       }
 
-      toast.error('Invalid credentials. Please use demo account.');
+      toast.error('Invalid credentials. Please use demo account or valid credentials.');
       return { error: 'Invalid credentials' };
     } catch (error) {
       console.error('Login error:', error);
