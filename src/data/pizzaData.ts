@@ -247,6 +247,44 @@ export const pizzaData: Pizza[] = [
     featured: true
   },
   {
+    id: 'Cashew-Cream-Crunch',
+    name: 'Cashew-Cream-Crunch',
+    description: 'A vibrant and nutritious pizza featuring our signature beetroot crust topped with fresh vegetables and low-fat mozzarella.',
+    image: 'https://www.makingthymeforhealth.com/wp-content/uploads/2017/03/White-Garlic-Cashew-Cream-Pizza-with-Dijon-Brussels-and-Shiitake-Bacon-04.jpg',
+    basePrice: 280,
+    baseCalories: 200,
+    toppings: [
+      { id: 'cheese', quantity: 25 },
+      { id: 'spinach', quantity: 20 },
+      { id: 'bell-peppers', quantity: 20 },
+      { id: 'tomatoes', quantity: 20 }
+    ],
+    crust: 'beetroot',
+    sauce: 'tomato',
+    size: 'medium',
+    vegan: true,
+    featured: true
+  },
+  {
+    id: 'BBQ-Jackfruit Blaze',
+    name: 'BBQ-Jackfruit Blaze',
+    description: 'A vibrant and nutritious pizza featuring our signature beetroot crust topped with fresh vegetables and low-fat mozzarella.',
+    image: 'https://cdn.prod.website-files.com/625aff85c051395e6f8d5f8b/628cb7f19ae443bebf4f1f8d_VEGAN-BBQ-JACKFRUIT-PIZZA.jpg',
+    basePrice: 290,
+    baseCalories: 300,
+    toppings: [
+      { id: 'cheese', quantity: 25 },
+      { id: 'spinach', quantity: 20 },
+      { id: 'bell-peppers', quantity: 20 },
+      { id: 'tomatoes', quantity: 20 }
+    ],
+    crust: 'beetroot',
+    sauce: 'tomato',
+    size: 'medium',
+    vegan: true,
+    featured: true
+  },
+  {
     id: 'ragi-special',
     name: 'Ragi Special',
     description: 'Our signature ragi crust topped with mushrooms, corn, and bell peppers. A calcium-rich, healthy option.',

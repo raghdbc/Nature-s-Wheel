@@ -46,7 +46,7 @@ const Customize: React.FC = () => {
           <div className="hidden lg:block">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img 
-                src="https://images.pexels.com/photos/4193872/pexels-photo-4193872.jpeg"
+                src="https://cdn.loveandlemons.com/wp-content/uploads/2019/06/homemade-pizza-2.jpg"
                 alt="Custom Pizza" 
                 className="w-full h-96 object-cover"
               />
