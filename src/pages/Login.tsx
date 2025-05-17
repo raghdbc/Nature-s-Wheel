@@ -135,11 +135,11 @@ const Login: React.FC = () => {
               </Link>
             </p>
             
-            <div className="mt-8 text-center text-sm text-gray-500">
+            {/* <div className="mt-8 text-center text-sm text-gray-500">
               For demo purposes, use:<br />
               Email: demo@example.com<br />
               Password: password
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
