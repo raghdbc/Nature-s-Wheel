@@ -3,10 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import { CheckCircle, CreditCard, Home, Truck, MapPin, Clock, Calendar } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { useOrders } from '../context/OrderContext';
+import { toast } from 'react-hot-toast';
 
 const Checkout: React.FC = () => {
   const { cartItems, cartTotal, cartCalories, clearCart } = useCart();
   const { profile, updateProfile } = useAuth();
+  const { addOrder } = useOrders();
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: profile?.name || '',
@@ -68,12 +71,41 @@ const Checkout: React.FC = () => {
     e.preventDefault();
     
     if (validateForm()) {
-      if (formData.paymentMethod === 'cod') {
-        clearCart();
-        navigate('/order-confirmation');
-      } else {
-        // For online payment, redirect to payment page
-        navigate('/payment');
+      try {
+        // Create order
+        const orderData = {
+          items: cartItems,
+          totalAmount: cartTotal + 40 + (cartTotal * 0.05), // Adding delivery charge and tax
+          status: 'pending' as const,
+          customerName: formData.name,
+          customerEmail: formData.email || profile?.email || 'customer@example.com',
+          deliveryAddress: `${formData.address}, ${formData.city}, ${formData.pincode}`,
+        };
+
+        // Save order
+        addOrder(orderData);
+
+        // Update profile if needed
+        if (profile) {
+          await updateProfile({
+            phone: formData.phone,
+            default_address: formData.address,
+            city: formData.city,
+            pincode: formData.pincode,
+          });
+        }
+
+        if (formData.paymentMethod === 'cod') {
+          clearCart();
+          toast.success('Order placed successfully!');
+          navigate('/order-confirmation');
+        } else {
+          // For online payment, redirect to payment page
+          navigate('/payment');
+        }
+      } catch (error) {
+        console.error('Error placing order:', error);
+        toast.error('Failed to place order. Please try again.');
       }
     }
   };

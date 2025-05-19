@@ -4,6 +4,7 @@ import { toast } from 'react-hot-toast';
 interface Profile {
   id: string;
   name: string;
+  email: string;
   phone: string | null;
   default_address: string | null;
   city: string | null;
@@ -43,6 +44,18 @@ const DEMO_USER = {
   id: 'demo-user-id',
   name: 'Demo User',
 };
+const Raghu = {
+  email: 'Raghu@aura.com',
+  password: 'Raghu@1234',
+  id: 'Raghu',
+  name: 'Raghu',
+};
+const Aura = {
+  email: 'me@aura.com',
+  password: 'Aura@1234',
+  id: 'Aura',
+  name: 'Aura',
+};
 const Reethu = {
   email: 'reethujayamma29@gmail.com',
   password: 'Reethu@1234',
@@ -73,15 +86,18 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     try {
       // Check for both demo and Reethu credentials
       if ((email === DEMO_USER.email && password === DEMO_USER.password) ||
-          (email === Reethu.email && password === Reethu.password)) {
+          (email === Reethu.email && password === Reethu.password) ||
+          (email === Aura.email && password === Aura.password) ||
+          (email === Raghu.email && password === Raghu.password)) {
         
         // Determine which user is logging in
-        const currentUser = email === DEMO_USER.email ? DEMO_USER : Reethu;
+        const currentUser = email === DEMO_USER.email ? DEMO_USER : email === Reethu.email ? Reethu : email === Aura.email ? Aura : Raghu;
         
         const userObj = { id: currentUser.id, email: currentUser.email };
         const userProfile = {
           id: currentUser.id,
           name: currentUser.name,
+          email: currentUser.email,
           phone: null,
           default_address: null,
           city: null,
@@ -95,7 +111,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.setItem('user', JSON.stringify(userObj));
         localStorage.setItem('profile', JSON.stringify(userProfile));
 
-        toast.success('Welcome back!');
+        toast.success(`Welcome back ${currentUser.name}!`);
         return { error: null };
       }
 
@@ -110,7 +126,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const register = async (_name: string, _email: string, _password: string) => {
     try {
-      toast.error('Registration is disabled. Please use the demo account.');
+      toast.error('Registration is disabled. Please use the registered account.');
       return { error: 'Registration disabled' };
     } catch (error) {
       console.error('Registration error:', error);

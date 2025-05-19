@@ -7,7 +7,7 @@ import { useCart } from '../../context/CartContext';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isAuthenticated, user, logout } = useAuth();
+  const { isAuthenticated, user, profile, logout } = useAuth();
   const { cartItems } = useCart();
   const location = useLocation();
   const navigate = useNavigate();
@@ -34,7 +34,7 @@ const Navbar: React.FC = () => {
   }, [location]);
 
   // Safely get the user's first name
-  const userFirstName = user?.name?.split(' ')[0] || 'User';
+  const userFirstName = profile?.name?.split(' ')[0] || 'User';
 
   const handleLogout = async () => {
     await logout();

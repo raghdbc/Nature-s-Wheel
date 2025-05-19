@@ -3,10 +3,15 @@ import { useNavigate } from 'react-router-dom';
 import { CreditCard, Smartphone, Check } from 'lucide-react';
 import { QRCodeSVG } from 'qrcode.react';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext';
+import { useOrders } from '../context/OrderContext';
+import { toast } from 'react-hot-toast';
 
 const Payment: React.FC = () => {
   const navigate = useNavigate();
-  const { cartTotal, clearCart } = useCart();
+  const { cartItems, cartTotal, clearCart } = useCart();
+  const { profile } = useAuth();
+  const { addOrder } = useOrders();
   const [paymentMethod, setPaymentMethod] = useState<'upi' | 'card' | null>(null);
   const [cardDetails, setCardDetails] = useState({
     number: '',
@@ -24,23 +29,54 @@ const Payment: React.FC = () => {
     }));
   };
 
+  const createOrder = () => {
+    try {
+      const orderData = {
+        items: cartItems,
+        totalAmount: cartTotal + 40 + (cartTotal * 0.05), // Adding delivery charge and tax
+        status: 'pending' as const,
+        customerName: profile?.name || 'Customer',
+        customerEmail: profile?.email || 'customer@example.com',
+        deliveryAddress: profile?.default_address || 'No address provided',
+      };
+
+      addOrder(orderData);
+      toast.success('Order placed successfully!');
+    } catch (error) {
+      console.error('Error creating order:', error);
+      toast.error('Failed to create order. Please try again.');
+    }
+  };
+
   const handleCardSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsProcessing(true);
-    // Simulate payment processing
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    setIsProcessing(false);
-    clearCart();
-    navigate('/order-confirmation');
+    try {
+      // Simulate payment processing
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      createOrder();
+      clearCart();
+      navigate('/order-confirmation');
+    } catch (error) {
+      console.error('Error processing payment:', error);
+      toast.error('Payment failed. Please try again.');
+      setIsProcessing(false);
+    }
   };
 
   const handleUPISuccess = async () => {
     setIsProcessing(true);
-    // Simulate payment processing
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    setIsProcessing(false);
-    clearCart();
-    navigate('/order-confirmation');
+    try {
+      // Simulate payment processing
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      createOrder();
+      clearCart();
+      navigate('/order-confirmation');
+    } catch (error) {
+      console.error('Error processing UPI payment:', error);
+      toast.error('Payment failed. Please try again.');
+      setIsProcessing(false);
+    }
   };
 
   const upiPaymentString = `upi://pay?pa=merchant.upi@bank&pn=HealthyPizza&am=${cartTotal.toFixed(2)}&cu=INR`;

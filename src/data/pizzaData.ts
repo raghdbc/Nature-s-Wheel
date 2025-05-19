@@ -108,35 +108,35 @@ export const toppingsData: Topping[] = [
     id: 'cheese',
     name: 'Low-Fat Mozzarella',
     calories: 90,
-    pricePerGram: 0.9,
+    pricePerGram: 1,
     vegan: false
   },
   {
     id: 'vegan-cheese',
     name: 'Vegan Cheese',
     calories: 80,
-    pricePerGram: 1.1,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'grilled-chicken',
     name: 'Grilled Chicken',
     calories: 100,
-    pricePerGram: 1.2,
+    pricePerGram: 1,
     vegan: false
   },
   {
     id: 'chicken-tikka',
     name: 'Chicken Tikka',
     calories: 110,
-    pricePerGram: 1.3,
+    pricePerGram: 1,  
     vegan: false
   },
   {
     id: 'egg',
     name: 'Boiled Egg',
     calories: 70,
-    pricePerGram: 0.8,
+    pricePerGram: 1,
     vegan: false
   },
   {
@@ -150,77 +150,77 @@ export const toppingsData: Topping[] = [
     id: 'tofu',
     name: 'Grilled Tofu',
     calories: 40,
-    pricePerGram: 0.8,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'chickpeas',
     name: 'Roasted Chickpeas',
     calories: 60,
-    pricePerGram: 0.7,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'mushrooms',
     name: 'Mushrooms',
     calories: 20,
-    pricePerGram: 0.7,
+    pricePerGram: 1,    
     vegan: true
   },
   {
     id: 'spinach',
     name: 'Fresh Spinach',
     calories: 10,
-    pricePerGram: 0.5,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'tomatoes',
     name: 'Cherry Tomatoes',
     calories: 15,
-    pricePerGram: 0.6,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'bell-peppers',
     name: 'Bell Peppers',
     calories: 12,
-    pricePerGram: 0.6,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'onions',
     name: 'Red Onions',
     calories: 18,
-    pricePerGram: 0.4,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'olives',
     name: 'Black Olives',
     calories: 30,
-    pricePerGram: 0.8,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'avocado',
     name: 'Avocado Slices',
     calories: 65,
-    pricePerGram: 1.2,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'broccoli',
     name: 'Broccoli Florets',
     calories: 15,
-    pricePerGram: 0.6,
+    pricePerGram: 1,
     vegan: true
   },
   {
     id: 'cauliflower',
     name: 'Roasted Cauliflower',
     calories: 25,
-    pricePerGram: 0.6,
+    pricePerGram: 1,
     vegan: true
   }
 ];

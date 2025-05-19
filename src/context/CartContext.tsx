@@ -2,7 +2,7 @@ import React, { createContext, useState, useContext, useEffect } from 'react';
 import { toast } from 'react-hot-toast';
 import { Pizza, usePizza, Crust, Sauce, Size, Topping } from './PizzaContext';
 
-interface CartItem {
+export interface CartItem {
   id: string;
   pizza: Pizza;
   quantity: number;
@@ -79,7 +79,7 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     
     // Apply 20% markup for customized pizzas
     if (pizza.id.startsWith('custom-')) {
-      totalPrice *= 1.2;
+      totalPrice *= 1;
     }
     
     return parseFloat(totalPrice.toFixed(2));
