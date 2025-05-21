@@ -55,7 +55,7 @@ const Admin: React.FC = () => {
             <p className="text-gray-600">Total Orders: {totalOrders}</p>
             <p className="text-gray-600">Pending Orders: {pendingOrders}</p>
             <p className="text-gray-600">Completed Orders: {completedOrders}</p>
-            <p className="text-gray-600 mt-2">Total Revenue: ${totalRevenue.toFixed(2)}</p>
+            <p className="text-gray-600 mt-2">Total Revenue: ₹{totalRevenue.toFixed(2)}</p>
           </div>
 
           {/* Menu Management Card */}
